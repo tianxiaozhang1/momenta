@@ -21,7 +21,6 @@ router = DefaultRouter()
 router.register(r'moments', views.MomentViewSet, basename="moment")
 router.register(r'users', views.UserViewSet, basename="user")
 router.register(r'profiles', ProfileViews.ProfileViewSet, basename="profile")
-# router.register(r'follow', ProfileViews.ProfileFollowSet.follow_action, basename="profile-follow")
 
 # The API URLs are now determined automatically by the router.
 urlpatterns = [
@@ -31,10 +30,6 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path("follow/<str:username>/", ProfileViews.follow, name="profile_follow"),
     path("register/", RegisterView.as_view(), name="register"),
-    # path("following/<str:id>/", FollowerView.as_view(), name="following"),
-    # path("register/", ProfileViewSet.as_view(), name="register"),
-    # path("profile/<str:username>/", ProfileViews.ProfileViewSet.as_view(), name="profile_view"),
-    # path('profile/1/follow', follow, name="profile_follow")
 ]
 
 if settings.DEBUG:
