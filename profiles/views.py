@@ -42,7 +42,6 @@ from .serializers import ProfileSerializer, RegisterSerializer#, FollowerSeriali
 User = get_user_model()
 ALLOWED_HOSTS = settings.ALLOWED_HOSTS
 
-
 @api_view(['GET', 'POST'])
 def follow(request, username, *args, **kwargs):
     queryset = Profile.objects.filter(user__username=username)
@@ -114,39 +113,3 @@ def api_root(request, format=None):
     return Response({
         # 'profiles': reverse('profile-list', request=request, format=format),
     })
-
-# class UserFollowingViewSet(viewsets.ModelViewSet):
-
-#     permission_classes = (IsAuthenticatedOrReadOnly,)
-#     serializer_class = ProfileSerializer
-#     queryset = UserFollowing.objects.all()
-
-# class FollowerView(generics.RetrieveAPIView):
-#     queryset = FollowerRelation.objects.all()
-#     serializer_class = FollowerSerializer
-#     permission_classes = [IsAuthenticated]
-#     lookup_field = 'id'
-
-# class FollowingList(generics.ListCreateAPIView):
-#     queryset = FollowerRelation.objects.all()
-#     print("** FollowingList queryset", queryset)
-#     print("User", User)
-#     serializer_class = FollowerSerializer
-#     permission_classes = [IsAuthenticated]
-#     lookup_field = 'id'
-    
-#     def get_queryset(self, **kwargs):
-#         user_username = self.kwargs['username']
-#         user = get_object_or_404(User, username=user_username)
-#         user_followers = user.followers.all()
-#         return user_followers
-
-# class UserFollowingViewSet(viewsets.ModelViewSet):
-
-#     serializer_class = FollowingSerializer
-#     queryset = UserFollowing.objects.all()
-
-# class UserFollowerViewSet(viewsets.ModelViewSet):
-
-#     serializer_class = FollowersSerializer
-#     queryset = UserFollowing.objects.all()
