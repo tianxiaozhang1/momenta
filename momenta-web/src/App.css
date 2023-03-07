@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lexend', sans-serif;
+  color: inherit;
+  font-size: inherit;
+  scroll-behavior: smooth;
+  background-color: #f8f8f8;
+}
+
+.App-header {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font: 'Sans-serif';
+  color: #929292;
+  height: 100px;
+}
+
+.App-footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font: 'Sans-serif';
+  color: #929292;
+  height: 52px;
+}
+
+.Title {
+  align-self: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.Centre {
+  justify-content: center;
+}
+
+.ProfilePic {
+  float: left;
+  shape-outside: circle();
+  shape-image-threshold: 0.9;
+  shape-margin: 2%;
+}
+
+.Home-page {
+  background-color: white;
+}
+
+.Float-right {
+  margin-left: auto;
+  order: 2;
+}
+
+.Mini-profile {
+  margin-left: 5px;
+}
+
+.Post {
+  /* background-color: red; */
+  margin-right: 5px;
+  align-items: center;
+}
+
+/* Create three equal columns that floats next to each other */
+.Profile-column {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  vertical-align: middle;
+  background-color: grey;
+  height: 332px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
