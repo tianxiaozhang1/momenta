@@ -6,52 +6,8 @@ from django.db.models.signals import post_save
 # User = settings.AUTH_USER_MODEL
 from django.contrib.auth.models import User
 
-# class UserFollowing(models.Model):
-#     user_id = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
-#     following_user_id = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
-#     created = models.DateTimeField(auto_now_add=True, db_index=True)
-
-#     class Meta:
-#         unique_together = (('user_id', 'following_user_id'),)
-#         index_together = (('user_id', 'following_user_id'),)
-#         ordering = ["-created"]
-
-#     def __str__(self):
-#         f"{self.user_id} follows {self.following_user_id}"
-
 from django.contrib.auth import get_user_model
 UserModel = get_user_model()
-
-# class UserFollowing(models.Model):
-
-#     user_id = models.ForeignKey(UserModel, related_name="following", on_delete=models.CASCADE)
-#     following_user_id = models.ForeignKey(UserModel, related_name="followers", on_delete=models.CASCADE)
-#     created = models.DateTimeField(auto_now_add=True, db_index=True)
-
-#     class Meta:
-#         constraints = [
-#             models.UniqueConstraint(fields=['user_id', 'following_user_id'], name="unique_followers")
-#         ]
-
-#         ordering = ["-created"]
-
-#     def __str__(self):
-#         f"{self.user_id} follows {self.following_user_id}"
-
-# class FollowerRelation(models.Model):
-#     # user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     # profile = models.ForeignKey("Profile", on_delete=models.CASCADE)
-#     # timestamp = models.DateTimeField(auto_now_add=True)
-
-#     user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE) 
-#     user = User.objects.get(id=1)
-#     ''' to obtain user ' eeee = User.objects.first() , eeee.user'    '''          
-#     following = models.ManyToManyField(User, related_name='following_user', blank=True)   
-#     ''' to obtain followers   ' eeee.following_user.all()'   '''
-#     ''' to obtain following   ' eeee.user.following.all()'   '''
-
-#     def __str__(self):
-#         return self.user.username
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -68,10 +24,7 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        
-    # def __str__(self):
-    #     return self.title
-
+      
 def user_did_save(sender, instance, created, *args, **kwargs):
     if created:
         Profile.objects.get_or_create(user=instance)
